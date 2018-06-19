@@ -1,0 +1,53 @@
+pt-BR:
+  activerecord:
+    models:
+      admin_user:
+        one: Usuário Administrativo
+        other: Usuários Administrativos
+      grow_bed:
+        one: Camara de cultivo
+        other: Camaras de cultivo
+      grow_bed_datum:
+        one: Dado da camara de cultivo
+        other: Dados da camara de cultivo
+      comments:
+        one: Comentário
+        other: Comentários
+      user:
+        one: Usuário
+        other: Usuários
+    attributes:
+      user:
+        name: Nome
+        email: E-mail
+        encrypted_password: Senha criptografada
+        current_sign_in_at: Acesso atual em
+        current_sign_in_ip: IP do acesso atual
+        last_sign_in_at: Último Acesso
+        last_sign_in_ip: IP do Último Acesso
+        password: Senha
+        password_confirmation: Confirmação de Senha
+        reset_password_sent_at: Redefinição de senha enviado em
+        reset_password_token: Token de redefinição de senha
+        sign_in_count: Número de logins
+        remember_created_at: Lembre-me criado em
+        created_at: Criado Em
+        updated_at: Atualizado em
+      grow_bed:
+        sample_type: Tipo de plantação
+        n_sample: Quantidade de amostras
+        active: Ativo
+        created_at: Criado Em
+        updated_at: Atualizado em
+      grow_bed_datum:
+        date: Data
+        avg_width: Largura média
+        avg_length: Comprimento médio
+        temperature: Temperatura
+        water_flow: Fluxo de água
+        lux: Luminosidade
+        ph: PH
+        n_fish: Quantidade de peixes
+        grow_bed: Camara de cultivo
+        created_at: Criado Em
+        updated_at: Atualizado em
