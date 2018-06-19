@@ -1,0 +1,2 @@
+class GrowBed < ApplicationRecord
+end
