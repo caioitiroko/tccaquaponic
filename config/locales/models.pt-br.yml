@@ -50,6 +50,7 @@ pt-BR:
         created_at: Criado Em
         updated_at: Atualizado em
       grow_bed:
+        name: Nome
         sample_type: Tipo de plantação
         n_sample: Quantidade de amostras
         active: Ativo
