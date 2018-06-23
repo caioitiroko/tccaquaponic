@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_23_144602) do
+ActiveRecord::Schema.define(version: 2018_06_23_151553) do
 
   create_table "active_admin_comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "namespace"
@@ -59,13 +59,14 @@ ActiveRecord::Schema.define(version: 2018_06_23_144602) do
   end
 
   create_table "grow_beds", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "sample_type"
     t.integer "n_sample"
     t.boolean "active"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "name"
+    t.bigint "sample_type_id"
     t.index ["name"], name: "index_grow_beds_on_name", unique: true
+    t.index ["sample_type_id"], name: "index_grow_beds_on_sample_type_id"
   end
 
   create_table "sample_types", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -92,4 +93,5 @@ ActiveRecord::Schema.define(version: 2018_06_23_144602) do
   end
 
   add_foreign_key "grow_bed_data", "grow_beds"
+  add_foreign_key "grow_beds", "sample_types"
 end

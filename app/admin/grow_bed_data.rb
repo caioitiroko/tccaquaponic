@@ -21,9 +21,7 @@ ActiveAdmin.register GrowBedDatum do
 
   show do
     attributes_table do
-      row t('activerecord.attributes.grow_bed_datum.grow_bed') do |gbd|
-        gbd.grow_bed.name
-      end
+      row :grow_bed
       row :date
       row :avg_width
       row :avg_length

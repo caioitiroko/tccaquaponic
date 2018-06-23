@@ -1,7 +1,7 @@
 ActiveAdmin.register GrowBed do
   menu priority: 2
 
-  permit_params :name, :sample_type, :n_sample, :active
+  permit_params :name, :sample_type_id, :n_sample, :active
 
   config.batch_actions = false
 
