@@ -28,6 +28,15 @@ ActiveAdmin.register GrowBed do
       row :active
       row :created_at
       row :updated_at
+      row t('activerecord.attributes.grow_bed.grow_bed_data') do |gb|
+        table_for gb.grow_bed_data.order(:date, date: :desc) do
+          column t('activerecord.attributes.grow_bed_datum.date') do |gbd|
+            link_to(l(gbd.date, format: :long), admin_grow_bed_datum_path(gbd.id))
+          end
+          column :avg_length
+          column :avg_width
+        end
+      end
     end
   end
 

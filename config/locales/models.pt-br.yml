@@ -56,6 +56,7 @@ pt-BR:
         name: Nome
         sample_type: Tipo de plantação
         n_sample: Quantidade de amostras
+        grow_bed_data: Dados coletados
         active: Ativo
         created_at: Criado Em
         updated_at: Atualizado em
