@@ -1,0 +1,7 @@
+pt-BR:
+  views:
+    dashboard:
+      last_access:
+        title: ÚLTIMO ACESSO
+        date: DATA
+        ip: IP

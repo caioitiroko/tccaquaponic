@@ -3,31 +3,41 @@ ActiveAdmin.register_page "Dashboard" do
   menu priority: 1, label: proc{ I18n.t("active_admin.dashboard") }
 
   content title: proc{ I18n.t("active_admin.dashboard") } do
-    div class: "blank_slate_container", id: "dashboard_default_message" do
-      span class: "blank_slate" do
-        span I18n.t("active_admin.dashboard_welcome.welcome")
-        small I18n.t("active_admin.dashboard_welcome.call_to_action")
+    columns do
+      column span: 2 do
+        if current_admin_user.last_sign_in_at && current_admin_user.last_sign_in_ip
+          panel t('views.dashboard.last_access.title') do
+            attributes_table_for OpenStruct.new(
+              date: l(current_admin_user.last_sign_in_at, format: :short),
+              ip: current_admin_user.last_sign_in_ip
+            ) do
+              row(t('views.dashboard.last_access.date')) { |object| object.date }
+              row(t('views.dashboard.last_access.ip'))  { |object| object.ip }
+            end
+          end
+        end
+      end
+      column span: 1 do
       end
     end
-
-    # Here is an example of a simple dashboard with columns and panels.
-    #
-    # columns do
-    #   column do
-    #     panel "Recent Posts" do
-    #       ul do
-    #         Post.recent(5).map do |post|
-    #           li link_to(post.title, admin_post_path(post))
-    #         end
-    #       end
-    #     end
-    #   end
-
-    #   column do
-    #     panel "Info" do
-    #       para "Welcome to ActiveAdmin."
-    #     end
-    #   end
-    # end
-  end # content
+    columns do
+      column span: 2  do
+        panel "DADOS MAIS RECENTES" do
+          table_for GrowBedDatum.recent(5) do
+            column :id do |datum|
+              link_to("Dado ##{datum.id}", admin_grow_bed_datum_path(datum))
+            end
+            column :date do |datum|
+            datum.date
+            end
+            column :grow_bed do |datum|
+              link_to(datum.grow_bed.name, admin_grow_bed_path(datum.grow_bed))
+            end
+          end
+        end
+      end
+      column span: 1 do
+      end
+    end
+  end
 end
