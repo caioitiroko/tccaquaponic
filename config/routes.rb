@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'linear_regression/index'
+  get 'linear_regression/result'
   devise_for :admin_users, ActiveAdmin::Devise.config
   devise_for :users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
