@@ -9,5 +9,5 @@ Rails.application.routes.draw do
   post "api/grow_bed_datum", to: 'api#grow_bed_datum', as: :add_grow_bed_datum
   get "api/grow_bed/:grow_bed_id/last_datum", to: 'api#last_datum', as: :last_datum_grow_bed
 
-  root to: "admin/dashboard#index"
+  root to: "linear_regression#index"
 end

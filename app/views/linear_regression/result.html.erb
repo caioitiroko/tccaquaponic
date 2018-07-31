@@ -1,2 +1,43 @@
-<h1>LinearRegression#result</h1>
-<p>Find me in app/views/linear_regression/result.html.erb</p>
+<div id="main_container">
+  <div id="results_container">
+    <h1>Resultados</h1>
+    <table>
+      <tr>
+        <th></th>
+        <th><strong>Crescimento esperado</strong></th>
+        <th><strong>Tamanho final esperado</strong></th>
+        <th><strong>Coeficiente de precisão (0~1)</strong></th>
+      </tr>
+      <tr>
+        <td><strong>Comprimento</strong></td>
+        <td><span><%= @expectedGrowthLength %></span></td>
+        <td><span><%= @expectedLength %></span></td>
+        <td><span class="<%= @lengthStyle %>"><%= @determinationCoefficientLength %></span></td>
+      </tr>
+      <tr>
+        <td><strong>Largura</strong></td>
+        <td><span><%= @expectedGrowthWidth %></span></td>
+        <td><span><%= @expectedWidth %></span></td>
+        <td><span class="<%= @widthStyle %>"><%= @determinationCoefficientWidth %></span></td>
+      </tr>
+    </table>
+    <div class="result_container">
+      <strong>Crescimento de largura esperado:</strong> <span><%= @expectedGrowthWidth %> ± <%= @expectedErrorWidth %></span>
+    </div>
+    <div class="result_container">
+      <strong>Crescimento de comprimento esperado:</strong> <span><%= @expectedGrowthLength %> ± <%= @expectedErrorLength %></span>
+    </div>
+    <div class="result_container">
+      <strong>Largura esperada:</strong> <span><%= @expectedWidth %></span>
+    </div>
+    <div class="result_container">
+      <strong>Comprimento esperado:</strong> <span><%= @expectedLength %></span>
+    </div>
+    <div class="result_container">
+      <strong>Coeficiente de precisão da largura (0-1):</strong> <span class="<%= @widthStyle %>"><%= @determinationCoefficientWidth %></span>
+    </div>
+    <div class="result_container">
+      <strong>Coeficiente de precisão do comprimento (0-1):</strong> <span class="<%= @lengthStyle %>"><%= @determinationCoefficientLength %></span>
+    </div>
+  </div>
+</div>

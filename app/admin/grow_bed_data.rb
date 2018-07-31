@@ -23,13 +23,26 @@ ActiveAdmin.register GrowBedDatum do
     attributes_table do
       row :grow_bed
       row :date
-      row :avg_width
-      row :avg_length
       row :temperature
       row :water_flow
       row :lux
       row :ph
       row :n_fish
+      columns do
+        column do
+          attributes_table title: "Dimensões" do
+            row :avg_width
+            row :avg_length
+          end
+        end
+
+        column do
+          attributes_table title: "Crescimento" do
+            row :growth_width
+            row :growth_length
+          end
+        end
+      end
     end
   end
 

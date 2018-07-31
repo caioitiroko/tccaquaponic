@@ -1,3 +1,109 @@
 // Place all the styles related to the linear_regression controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+h1 {
+  font-weight: bold;
+  color: #003632;
+}
+
+#main_container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+#form_container,
+#results_container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  border-radius: 10px;
+  -webkit-box-shadow: 4px 4px 10px 1px rgba(0,0,0,0.75);
+  -moz-box-shadow: 4px 4px 10px 1px rgba(0,0,0,0.75);
+  box-shadow: 4px 4px 10px 1px rgba(0,0,0,0.75);
+}
+
+#results_container {
+  min-width: 350px;
+}
+
+.input_container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+
+  label {
+    margin-right: 10px;
+  }
+
+  input[type=text] {
+    max-width: 40px;
+    border-radius: 4px;
+  }
+
+  input[type=submit] {
+    align-self: center;
+    width: 200px;
+    border-radius: 8px;
+  }
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+
+  th, td {
+    border: 1px solid black;
+    text-align: center;
+  }
+
+  span {
+    font-size: 12px;
+  }
+
+  strong {
+    font-size: 14px;
+  }
+}
+
+.result_container {
+  display: none;
+
+  span {
+    font-size: 12px;
+  }
+
+  strong {
+    font-size: 12px;
+  }
+}
+
+.red {
+  color: red;
+}
+
+.yellow {
+  color: yellow;
+}
+
+.green {
+  color: green;
+}
+
+#action_container {
+  justify-content: center;
+  margin-top: 30px;
+}
+
+@media only screen and (max-width: 600px) {
+  .result_container {
+    display: block;
+  }
+  table {
+    display: none;
+  }
+}
