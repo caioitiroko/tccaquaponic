@@ -5,13 +5,19 @@ class LinearRegressionController < ApplicationController
   end
 
   def result
-    expectedGrowth = getExpectedGrowth(params[:lux], params[:n_fish], params[:ph], params[:temperature], params[:water_flow], params[:previous_length], params[:previous_width])
-    @expectedGrowthLength = expectedGrowth[0].round(3)
-    @expectedGrowthWidth = expectedGrowth[1].round(3)
+    inputs = [params[:lux], params[:n_fish], params[:ph], params[:temperature], params[:water_flow], params[:previous_length], params[:previous_width]].map(&:to_f)
+
+    results = getRegressionResult(inputs)
+
+    @constantsL = results[:constantsL].map { |c| c.round(3)}
+    @constantsW = results[:constantsW].map { |c| c.round(3)}
+
+    @expectedGrowthLength = results[:expectedGrowthLength].round(3)
+    @expectedGrowthWidth = results[:expectedGrowthWidth].round(3)
     @expectedLength = (@expectedGrowthLength + params[:previous_length].to_f).round(3)
     @expectedWidth = (@expectedGrowthWidth + params[:previous_width].to_f).round(3)
-    @determinationCoefficientLength = getDeterminationCoefficient[0].round(3)
-    @determinationCoefficientWidth = getDeterminationCoefficient[1].round(3)
+    @determinationCoefficientLength = results[:coefficientL].round(3)
+    @determinationCoefficientWidth = results[:coefficientW].round(3)
     @widthStyle =
       if @determinationCoefficientWidth < 0.5
         "red"
@@ -28,7 +34,5 @@ class LinearRegressionController < ApplicationController
       else
         "green"
       end
-
-    Rails.logger.warn "#{expectedGrowth}"
   end
 end

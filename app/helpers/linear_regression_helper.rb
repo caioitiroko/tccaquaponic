@@ -1,22 +1,38 @@
 require "matrix"
 
 module LinearRegressionHelper
-  def getExpectedGrowth(lux, n_fish, ph, temperature, water_flow, previous_length, previous_width)
-    inputs = [lux, n_fish, ph, temperature, water_flow, previous_length, previous_width].map(&:to_f)
-    puts inputs
-    axis = getAxis
-    knowedValuesW = getKnowedGrowthWidth
-    knowedValuesL = getKnowedGrowthLength
+  def getRegressionResult(inputs)
+    result = Hash.new
 
-    constantsW = getConstants(axis, knowedValuesW)
-    resultsW = constantsW.map.with_index { |b, i| b * inputs[i] }
-    expectedGrowthWidth = resultsW.inject(0, &:+)
+    axis = getAxis
+    knowedValuesL = getKnowedGrowthLength
+    knowedValuesW = getKnowedGrowthWidth
 
     constantsL = getConstants(axis, knowedValuesL)
-    resultsL = constantsL.map.with_index { |b, i| b * inputs[i] }
-    expectedGrowthLength = resultsL.inject(0, &:+)
+    result[:constantsL] = constantsL.column(0)
+    result[:expectedGrowthLength] = calcGrowth(constantsL, inputs)
 
-    [expectedGrowthLength, expectedGrowthWidth]
+    constantsW = getConstants(axis, knowedValuesW)
+    result[:constantsW] = constantsW.column(0)
+    result[:expectedGrowthWidth] = calcGrowth(constantsW, inputs)
+
+    errorsL = calcErrors(constantsL, axis, knowedValuesL)
+    result[:errorMinL] = errorsL.min
+    result[:errorMaxL] = errorsL.max
+
+    errorsW = calcErrors(constantsW, axis, knowedValuesW)
+    result[:errorMinW] = errorsW.min
+    result[:errorMaxW] = errorsW.max
+
+    result[:coefficientL] = calcDeterminationCoefficient(constantsL, axis, knowedValuesL)
+    result[:coefficientW] = calcDeterminationCoefficient(constantsW, axis, knowedValuesW)
+
+    result
+  end
+
+  def calcGrowth(constants, variables)
+    results = constants.map.with_index { |b, i| b * variables[i] }
+    results.inject(0, &:+)
   end
 
   def getAxis
@@ -68,33 +84,22 @@ module LinearRegressionHelper
     estimated - knowedValues
   end
 
-  def calcRegressionError(constants, axis, knowedValues)
+  def calcErrors(constants, axis, knowedValues)
     axis.row_vectors.map.with_index do |vector, i|
       calcSingleError(constants, vector, knowedValues.row(i).first)
     end
   end
 
-  def calcSquareRegressionError(constants, axis, knowedValues)
-    calcRegressionError(constants, axis, knowedValues).map { |e| e ** 2 }
+  def calcSquareErrors(constants, axis, knowedValues)
+    calcErrors(constants, axis, knowedValues).map { |e| e ** 2 }
   end
 
   # As closer to 1, more precise the linear regression prediction
   def calcDeterminationCoefficient(constants, axis, knowedValues)
     media = knowedValues.inject(0, &:+)/knowedValues.count
-    sse = calcSquareRegressionError(constants, axis, knowedValues).inject(0, &:+)
+    sse = calcSquareErrors(constants, axis, knowedValues).inject(0, &:+)
     sst = knowedValues.map{|x| (x - media)**2}.inject(0, &:+)
     ssr = sst - sse
     ssr/sst
-  end
-
-  def getDeterminationCoefficient
-    axis = getAxis
-    knowedValuesW = getKnowedGrowthWidth
-    knowedValuesL = getKnowedGrowthLength
-    constantsW = getConstants(axis, knowedValuesW)
-    constantsL = getConstants(axis, knowedValuesL)
-    determinationCoefficientL = calcDeterminationCoefficient(constantsL, axis, knowedValuesL)
-    determinationCoefficientW = calcDeterminationCoefficient(constantsW, axis, knowedValuesW)
-    [determinationCoefficientL, determinationCoefficientW]
   end
 end

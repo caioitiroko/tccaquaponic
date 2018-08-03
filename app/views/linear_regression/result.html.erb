@@ -4,28 +4,37 @@
     <table>
       <tr>
         <th></th>
+        <th><strong>Tamanho inicial</strong></th>
         <th><strong>Crescimento esperado</strong></th>
         <th><strong>Tamanho final esperado</strong></th>
         <th><strong>Coeficiente de precisão (0~1)</strong></th>
       </tr>
       <tr>
         <td><strong>Comprimento</strong></td>
+        <td><span><%= params[:previous_length] %></span></td>
         <td><span><%= @expectedGrowthLength %></span></td>
         <td><span><%= @expectedLength %></span></td>
         <td><span class="<%= @lengthStyle %>"><%= @determinationCoefficientLength %></span></td>
       </tr>
       <tr>
         <td><strong>Largura</strong></td>
+        <td><span><%= params[:previous_width] %></span></td>
         <td><span><%= @expectedGrowthWidth %></span></td>
         <td><span><%= @expectedWidth %></span></td>
         <td><span class="<%= @widthStyle %>"><%= @determinationCoefficientWidth %></span></td>
       </tr>
     </table>
     <div class="result_container">
-      <strong>Crescimento de largura esperado:</strong> <span><%= @expectedGrowthWidth %> ± <%= @expectedErrorWidth %></span>
+      <strong>Largura inicial:</strong> <span><%= params[:previous_width] %></span>
     </div>
     <div class="result_container">
-      <strong>Crescimento de comprimento esperado:</strong> <span><%= @expectedGrowthLength %> ± <%= @expectedErrorLength %></span>
+      <strong>Comprimento inicial:</strong> <span><%= params[:previous_length] %></span>
+    </div>
+    <div class="result_container">
+      <strong>Crescimento de largura esperado:</strong> <span><%= @expectedGrowthWidth %></span>
+    </div>
+    <div class="result_container">
+      <strong>Crescimento de comprimento esperado:</strong> <span><%= @expectedGrowthLength %></span>
     </div>
     <div class="result_container">
       <strong>Largura esperada:</strong> <span><%= @expectedWidth %></span>
@@ -38,6 +47,18 @@
     </div>
     <div class="result_container">
       <strong>Coeficiente de precisão do comprimento (0-1):</strong> <span class="<%= @lengthStyle %>"><%= @determinationCoefficientLength %></span>
+    </div>
+  </div>
+  <div id="results_container">
+    <div class="constant_container">
+      <div class="constant_container_length">
+        <h3>Comprimento</h3>
+        <code>c = Luminosidade x <%= @constantsL[0] %> + Nº peixes x <%= @constantsL[1] %> + PH x <%= @constantsL[2] %> + Temperatura x <%= @constantsL[3] %> + Fluxo água x <%= @constantsL[4] %> + Comprimento x <%= @constantsL[5] %> + Largura x <%= @constantsL[6] %></code>
+      </div>
+      <div class="constant_container_width">
+        <h3>Largura</h3>
+        <code>c = Luminosidade x <%= @constantsW[0] %> + Nº peixes x <%= @constantsW[1] %> + PH x <%= @constantsW[2] %> + Temperatura x <%= @constantsW[3] %> + Fluxo água x <%= @constantsW[4] %> + Comprimento x <%= @constantsW[5] %> + Largura x <%= @constantsW[6] %></code>
+      </div>
     </div>
   </div>
 </div>

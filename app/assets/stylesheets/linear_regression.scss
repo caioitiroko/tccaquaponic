@@ -1,7 +1,9 @@
 // Place all the styles related to the linear_regression controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-h1 {
+h1,
+h2,
+h3 {
   font-weight: bold;
   color: #003632;
 }
@@ -10,7 +12,7 @@ h1 {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  padding: 20px;
   height: 100vh;
 }
 
@@ -20,6 +22,7 @@ h1 {
   flex-direction: column;
   align-items: center;
   padding: 20px;
+  margin-bottom: 20px;
   border-radius: 10px;
   -webkit-box-shadow: 4px 4px 10px 1px rgba(0,0,0,0.75);
   -moz-box-shadow: 4px 4px 10px 1px rgba(0,0,0,0.75);
@@ -82,21 +85,35 @@ table {
   }
 }
 
+.constant_container {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
 .red {
-  color: red;
+  color: #C0392B;
 }
 
 .yellow {
-  color: yellow;
+  color: #F1C40F;
 }
 
 .green {
-  color: green;
+  color: #1E8449;
 }
 
 #action_container {
   justify-content: center;
   margin-top: 30px;
+}
+
+.constant_container_length,
+.constant_container_width {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 @media only screen and (max-width: 600px) {
