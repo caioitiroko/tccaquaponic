@@ -2,6 +2,8 @@ require "matrix"
 
 module LinearRegressionHelper
   def getRegressionResult(inputs)
+    arrayOfInputs = [inputs[:lux], inputs[:n_fish], inputs[:ph], inputs[:temperature], inputs[:water_flow], inputs[:previous_length], inputs[:previous_width]].map(&:to_f)
+
     result = Hash.new
 
     axis = getAxis
@@ -10,11 +12,11 @@ module LinearRegressionHelper
 
     constantsL = getConstants(axis, knowedValuesL)
     result[:constantsL] = constantsL.column(0)
-    result[:expectedGrowthLength] = calcGrowth(constantsL, inputs)
+    result[:expectedGrowthLength] = calcGrowth(constantsL, arrayOfInputs)
 
     constantsW = getConstants(axis, knowedValuesW)
     result[:constantsW] = constantsW.column(0)
-    result[:expectedGrowthWidth] = calcGrowth(constantsW, inputs)
+    result[:expectedGrowthWidth] = calcGrowth(constantsW, arrayOfInputs)
 
     errorsL = calcErrors(constantsL, axis, knowedValuesL)
     result[:errorMinL] = errorsL.min
@@ -26,6 +28,20 @@ module LinearRegressionHelper
 
     result[:coefficientL] = calcDeterminationCoefficient(constantsL, axis, knowedValuesL)
     result[:coefficientW] = calcDeterminationCoefficient(constantsW, axis, knowedValuesW)
+
+    result[:sizeGraphLength] = [result[:expectedGrowthLength] + inputs[:previous_length].to_f]
+    result[:sizeGraphWidth] = [result[:expectedGrowthWidth] + inputs[:previous_width].to_f]
+
+    def inputsAux(inputs, length, width)
+      [inputs[:lux], inputs[:n_fish], inputs[:ph], inputs[:temperature], inputs[:water_flow], length, width].map(&:to_f)
+    end
+
+    6.times {
+      oldLength = result[:sizeGraphLength].last
+      oldWidth = result[:sizeGraphWidth].last
+      result[:sizeGraphLength] << calcGrowth(constantsL, inputsAux(inputs, oldLength, oldWidth)) + oldLength
+      result[:sizeGraphWidth]  << calcGrowth(constantsW, inputsAux(inputs, oldLength, oldWidth)) + oldWidth
+    }
 
     result
   end

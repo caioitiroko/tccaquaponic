@@ -57,8 +57,10 @@
       </div>
       <div class="constant_container_width">
         <h3>Largura</h3>
-        <code>c = Luminosidade x <%= @constantsW[0] %> + Nº peixes x <%= @constantsW[1] %> + PH x <%= @constantsW[2] %> + Temperatura x <%= @constantsW[3] %> + Fluxo água x <%= @constantsW[4] %> + Comprimento x <%= @constantsW[5] %> + Largura x <%= @constantsW[6] %></code>
+        <code>l = Luminosidade x <%= @constantsW[0] %> + Nº peixes x <%= @constantsW[1] %> + PH x <%= @constantsW[2] %> + Temperatura x <%= @constantsW[3] %> + Fluxo água x <%= @constantsW[4] %> + Comprimento x <%= @constantsW[5] %> + Largura x <%= @constantsW[6] %></code>
       </div>
     </div>
   </div>
+    <%= line_chart @graphDataLength, discrete: true, xtitle: "Data", ytitle: "Tamanho(cm)", min: @graphMinLength, max: @graphMaxLength %>
+    <%= line_chart @graphDataWidth, discrete: true, xtitle: "Data", ytitle: "Tamanho(cm)", min: @graphMinWidth, max:  @graphMaxWidth %>
 </div>
