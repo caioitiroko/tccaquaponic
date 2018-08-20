@@ -23,5 +23,11 @@ class GrowBedDatum < ApplicationRecord
     GrowBedDatum.where("date < :date and grow_bed_id = :grow_bed", { date: date, grow_bed: grow_bed  }).order(:date).last
   end
 
+  def ph_intensity
+    return :good if (ph.between?(5,7))
+    return :average if (ph.between?(4,8))
+    return :bad
+  end
+
   memoize :growth_length, :growth_width, :previous_datum
 end

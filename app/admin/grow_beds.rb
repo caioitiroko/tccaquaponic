@@ -6,7 +6,7 @@ ActiveAdmin.register GrowBed do
   config.batch_actions = false
 
   scope :all, default: true
-  scope :active
+  scope I18n.t('activerecord.attributes.grow_bed.active'), :active
 
   filter :id, as: :select, collection: -> { GrowBed.all.map { |gb| [gb.name, gb.id] } }, label: I18n.t('activerecord.models.grow_bed')[:one]
   filter :sample_type

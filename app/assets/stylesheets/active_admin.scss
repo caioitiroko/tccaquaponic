@@ -17,6 +17,33 @@ $panelHeaderBck: #003632;
 
 @import "active_skin";
 
+h1.dashboard_ph {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 40px;
+  font-weight: bold;
+}
+
+small.dashboard_ph {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  font-weight: bold;
+}
+
+.dashboard_ph.good {
+  color: #1E8449;
+}
+
+.dashboard_ph.average {
+  color: #F1C40F;
+}
+
+.dashboard_ph.bad {
+  color: #C0392B;
+}
+
 // Overriding any non-variable SASS must be done after the fact.
 // For example, to change the default status-tag color:
 //

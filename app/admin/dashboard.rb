@@ -18,19 +18,27 @@ ActiveAdmin.register_page "Dashboard" do
         end
       end
       column span: 1 do
+        panel "PH" do
+          h1 class: "#{GrowBedDatum.last.ph_intensity} dashboard_ph" do
+            GrowBedDatum.last.ph
+          end
+          small class: "dashboard_ph" do
+            GrowBedDatum.last.date
+          end
+        end
       end
     end
     columns do
       column span: 2  do
         panel "DADOS MAIS RECENTES" do
           table_for GrowBedDatum.recent(5) do
-            column :id do |datum|
+            column  t('activerecord.attributes.grow_bed_datum.id'), :id do |datum|
               link_to("Dado ##{datum.id}", admin_grow_bed_datum_path(datum))
             end
-            column :date do |datum|
+            column t('activerecord.attributes.grow_bed_datum.date'), :date do |datum|
             datum.date
             end
-            column :grow_bed do |datum|
+            column t('activerecord.models.grow_bed.other'), :grow_bed do |datum|
               link_to(datum.grow_bed.name, admin_grow_bed_path(datum.grow_bed))
             end
           end

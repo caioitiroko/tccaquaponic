@@ -21,6 +21,7 @@ pt-BR:
         other: Tipos de plantação
     attributes:
       admin_user:
+        id: ID
         name: Nome
         email: E-mail
         encrypted_password: Senha criptografada
@@ -64,6 +65,8 @@ pt-BR:
         date: Data
         avg_width: Largura média
         avg_length: Comprimento médio
+        growth_width: Crescimento lateral
+        growth_length: Crescimento vertical
         temperature: Temperatura
         water_flow: Fluxo de água
         lux: Luminosidade
