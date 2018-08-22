@@ -2,7 +2,7 @@ require "matrix"
 
 module LinearRegressionHelper
   def getRegressionResult(inputs)
-    arrayOfInputs = [inputs[:lux], inputs[:n_fish], inputs[:ph], inputs[:temperature], inputs[:water_flow], inputs[:previous_length], inputs[:previous_width]].map(&:to_f)
+    arrayOfInputs = [1, inputs[:lux], inputs[:ph], inputs[:temperature], inputs[:water_flow], inputs[:previous_length].to_f * inputs[:previous_width].to_f].map(&:to_f)
 
     result = Hash.new
 
@@ -33,12 +33,12 @@ module LinearRegressionHelper
     result[:sizeGraphWidth] = [result[:expectedGrowthWidth] + inputs[:previous_width].to_f]
 
     def inputsAux(inputs, length, width)
-      [inputs[:lux], inputs[:n_fish], inputs[:ph], inputs[:temperature], inputs[:water_flow], length, width].map(&:to_f)
+      [1, inputs[:lux], inputs[:ph], inputs[:temperature], inputs[:water_flow], length * width].map(&:to_f)
     end
 
     6.times {
-      oldLength = result[:sizeGraphLength].last
-      oldWidth = result[:sizeGraphWidth].last
+      oldLength = result[:sizeGraphLength].last.to_f
+      oldWidth = result[:sizeGraphWidth].last.to_f
       result[:sizeGraphLength] << calcGrowth(constantsL, inputsAux(inputs, oldLength, oldWidth)) + oldLength
       result[:sizeGraphWidth]  << calcGrowth(constantsW, inputsAux(inputs, oldLength, oldWidth)) + oldWidth
     }
@@ -47,7 +47,7 @@ module LinearRegressionHelper
   end
 
   def calcGrowth(constants, variables)
-    results = constants.map.with_index { |b, i| b * variables[i] }
+    results = (constants.to_a.flatten).map.with_index { |b, i| b * variables[i] }
     results.inject(0, &:+)
   end
 
@@ -56,7 +56,7 @@ module LinearRegressionHelper
 
     GrowBedDatum.order(:date).each do |datum|
       if datum.growth_width && datum.growth_length then
-        axis = Matrix.rows(axis.to_a << [datum.lux, datum.n_fish, datum.ph, datum.temperature, datum.water_flow, datum.previous_datum.avg_length, datum.previous_datum.avg_width])
+        axis = Matrix.rows(axis.to_a << [1, datum.lux, datum.ph, datum.temperature, datum.water_flow, datum.previous_datum.avg_length * datum.previous_datum.avg_width])
       end
     end
 
@@ -83,9 +83,7 @@ module LinearRegressionHelper
     knowedGrowthLength
   end
 
-  def getConstants(axis, knowedValues)
-    x, y = [axis, knowedValues]
-
+  def getConstants(x, y)
     xt = x.transpose
     xtx = xt * x
     c = xtx.inv
