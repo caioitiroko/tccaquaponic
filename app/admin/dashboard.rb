@@ -20,8 +20,8 @@ ActiveAdmin.register_page "Dashboard" do
       column span: 1 do
         if GrowBedDatum.last
           panel "PH" do
-            h1 class: "#{GrowBedDatum.last.ph_intensity} dashboard_ph" do
-              GrowBedDatum.last.ph
+            h1 class: "#{GrowBedDatum.order(:date).last.ph_intensity} dashboard_ph" do
+              GrowBedDatum.order(:date).last.ph
             end
             div class: "dashboard_ph_container" do
               div class: "dashboard_ph_color_legend" do
@@ -37,7 +37,7 @@ ActiveAdmin.register_page "Dashboard" do
               end
               div class: "dashboard_ph_date" do
                 small do
-                  GrowBedDatum.last.date
+                  I18n.l GrowBedDatum.last.date
                 end
               end
             end
