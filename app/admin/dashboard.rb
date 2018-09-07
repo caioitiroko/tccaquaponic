@@ -18,25 +18,27 @@ ActiveAdmin.register_page "Dashboard" do
         end
       end
       column span: 1 do
-        panel "PH"do
-          h1 class: "#{GrowBedDatum.last.ph_intensity} dashboard_ph" do
-            GrowBedDatum.last.ph
-          end
-          div class: "dashboard_ph_container" do
-            div class: "dashboard_ph_color_legend" do
-              span class: "good" do
-                "Bom"
-              end
-              span class: "average" do
-                "Regular"
-              end
-              span class: "bad" do
-                "Ruim"
-              end
+        if GrowBedDatum.last
+          panel "PH" do
+            h1 class: "#{GrowBedDatum.last.ph_intensity} dashboard_ph" do
+              GrowBedDatum.last.ph
             end
-            div class: "dashboard_ph_date" do
-              small do
-                GrowBedDatum.last.date
+            div class: "dashboard_ph_container" do
+              div class: "dashboard_ph_color_legend" do
+                span class: "good" do
+                  "Bom"
+                end
+                span class: "average" do
+                  "Regular"
+                end
+                span class: "bad" do
+                  "Ruim"
+                end
+              end
+              div class: "dashboard_ph_date" do
+                small do
+                  GrowBedDatum.last.date
+                end
               end
             end
           end
