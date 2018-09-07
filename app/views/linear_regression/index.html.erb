@@ -4,31 +4,50 @@
     <%= form_tag linear_regression_result_path, method: "get" do %>
       <div id="lux_container" class="input_container">
         <%= label_tag(:lux, "Luminosidade:") %>
-        <%= text_field_tag(:lux) %>
+        <div>
+          <%= text_field_tag(:lux) %>
+          <span>%</span>
+        </div>
       </div>
       <div id="n_fish_container" class="input_container">
         <%= label_tag(:n_fish, "Quantidade de peixes:") %>
-        <%= text_field_tag(:n_fish) %>
+        <div>
+          <%= text_field_tag(:n_fish) %>
+        </div>
       </div>
       <div id="ph_container" class="input_container">
         <%= label_tag(:ph, "PH:") %>
-        <%= text_field_tag(:ph) %>
+        <div>
+          <%= text_field_tag(:ph) %>
+        </div>
       </div>
       <div id="temperature_container" class="input_container">
         <%= label_tag(:temperature, "Temperatura:") %>
-        <%= text_field_tag(:temperature) %>
+        <div>
+          <%= text_field_tag(:temperature) %>
+          <span>ºC</span>
+        </div>
       </div>
       <div id="water_flow_container" class="input_container">
         <%= label_tag(:water_flow, "Fluxo da água:") %>
-        <%= text_field_tag(:water_flow) %>
+        <div>
+          <%= text_field_tag(:water_flow) %>
+          <span>L/H</span>
+        </div>
       </div>
       <div id="previous_width_container" class="input_container">
         <%= label_tag(:previous_width, "Largura da última amostra:") %>
-        <%= text_field_tag(:previous_width) %>
+        <div>
+          <%= text_field_tag(:previous_width) %>
+          <span>cm</span>
+        </div>
       </div>
       <div id="previous_length_container" class="input_container">
         <%= label_tag(:previous_length, "Comprimento da última amostra:") %>
-        <%= text_field_tag(:previous_length) %>
+        <div>
+          <%= text_field_tag(:previous_length) %>
+          <span>cm</span>
+        </div>
       </div>
       <div id="action_container" class="input_container">
         <%= submit_tag("Calcular") %>

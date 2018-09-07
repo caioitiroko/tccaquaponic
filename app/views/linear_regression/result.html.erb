@@ -11,36 +11,36 @@
       </tr>
       <tr>
         <td><strong>Comprimento</strong></td>
-        <td><span><%= params[:previous_length] %></span></td>
-        <td><span><%= @expectedGrowthLength %></span></td>
-        <td><span><%= @expectedLength %></span></td>
+        <td><span><%= params[:previous_length] %> cm</span></td>
+        <td><span><%= @expectedGrowthLength %> cm</span></td>
+        <td><span><%= @expectedLength %> cm</span></td>
         <td><span class="<%= @lengthStyle %>"><%= @determinationCoefficientLength %></span></td>
       </tr>
       <tr>
         <td><strong>Largura</strong></td>
-        <td><span><%= params[:previous_width] %></span></td>
-        <td><span><%= @expectedGrowthWidth %></span></td>
-        <td><span><%= @expectedWidth %></span></td>
+        <td><span><%= params[:previous_width] %> cm</span></td>
+        <td><span><%= @expectedGrowthWidth %> cm</span></td>
+        <td><span><%= @expectedWidth %> cm</span></td>
         <td><span class="<%= @widthStyle %>"><%= @determinationCoefficientWidth %></span></td>
       </tr>
     </table>
     <div class="result_container">
-      <strong>Largura inicial:</strong> <span><%= params[:previous_width] %></span>
+      <strong>Largura inicial:</strong> <span><%= params[:previous_width] %> cm</span>
     </div>
     <div class="result_container">
-      <strong>Comprimento inicial:</strong> <span><%= params[:previous_length] %></span>
+      <strong>Comprimento inicial:</strong> <span><%= params[:previous_length] %> cm</span>
     </div>
     <div class="result_container">
-      <strong>Crescimento de largura esperado:</strong> <span><%= @expectedGrowthWidth %></span>
+      <strong>Crescimento de largura esperado:</strong> <span><%= @expectedGrowthWidth %> cm</span>
     </div>
     <div class="result_container">
-      <strong>Crescimento de comprimento esperado:</strong> <span><%= @expectedGrowthLength %></span>
+      <strong>Crescimento de comprimento esperado:</strong> <span><%= @expectedGrowthLength %> cm</span>
     </div>
     <div class="result_container">
-      <strong>Largura esperada:</strong> <span><%= @expectedWidth %></span>
+      <strong>Largura esperada:</strong> <span><%= @expectedWidth %> cm</span>
     </div>
     <div class="result_container">
-      <strong>Comprimento esperado:</strong> <span><%= @expectedLength %></span>
+      <strong>Comprimento esperado:</strong> <span><%= @expectedLength %> cm</span>
     </div>
     <div class="result_container">
       <strong>Coeficiente de precisão da largura (0-1):</strong> <span class="<%= @widthStyle %>"><%= @determinationCoefficientWidth %></span>
@@ -61,6 +61,12 @@
       </div>
     </div>
   </div>
+  <div id="results_container">
+    <h3>Comprimento</h3>
     <%= line_chart @graphDataLength, discrete: true, xtitle: "Data", ytitle: "Tamanho(cm)", min: @graphMinLength, max: @graphMaxLength %>
+  </div>
+  <div id="results_container">
+    <h3>Largura</h3>
     <%= line_chart @graphDataWidth, discrete: true, xtitle: "Data", ytitle: "Tamanho(cm)", min: @graphMinWidth, max:  @graphMaxWidth %>
+  </div>
 </div>

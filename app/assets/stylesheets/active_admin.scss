@@ -25,13 +25,6 @@ h1.dashboard_ph {
   font-weight: bold;
 }
 
-small.dashboard_ph {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  font-weight: bold;
-}
-
 .dashboard_ph.good {
   color: #1E8449;
 }
@@ -42,6 +35,52 @@ small.dashboard_ph {
 
 .dashboard_ph.bad {
   color: #C0392B;
+}
+
+.dashboard_ph_container {
+  display: flex;
+
+  .dashboard_ph_color_legend {
+    flex-grow: 3;
+    display: flex;
+    flex-direction: column;
+
+    span {
+      display: flex;
+      justify-content: flex-start;
+    }
+
+    span:before {
+      content: "";
+      display: inline-block;
+      width: 15px;
+      height: 15px;
+      margin-right: 5px;
+      border-radius: 4px;
+    }
+
+    .good:before {
+       background: #1E8449;
+    }
+
+    .average:before {
+      background: #F1C40F;
+    }
+
+    .bad:before {
+      background: #C0392B;
+    }
+  }
+
+  .dashboard_ph_date {
+    flex-grow: 1;
+    text-align: end;
+
+    small {
+      font-weight: bold;
+    }
+  }
+
 }
 
 // Overriding any non-variable SASS must be done after the fact.
