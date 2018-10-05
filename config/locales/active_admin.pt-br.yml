@@ -101,7 +101,7 @@ pt-BR:
         title: "Cadastre-se"
         submit: "Continuar"
       login:
-        title: "Bem-vindo! Por favor insira os seus dados."
+        title: "Login"
         remember_me: "Lembrar da senha"
         submit: "Entrar"
       reset_password:
