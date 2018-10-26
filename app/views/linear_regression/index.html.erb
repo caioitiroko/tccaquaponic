@@ -5,47 +5,47 @@
       <div id="lux_container" class="input_container">
         <%= label_tag(:lux, "Luminosidade:") %>
         <div>
-          <%= text_field_tag(:lux) %>
+          <%= text_field_tag(:lux, params[:lux]) %>
           <span>%</span>
         </div>
       </div>
       <div id="n_fish_container" class="input_container">
         <%= label_tag(:n_fish, "Quantidade de peixes:") %>
         <div>
-          <%= text_field_tag(:n_fish) %>
+          <%= text_field_tag(:n_fish, params[:n_fish]) %>
         </div>
       </div>
       <div id="ph_container" class="input_container">
         <%= label_tag(:ph, "PH:") %>
         <div>
-          <%= text_field_tag(:ph) %>
+          <%= text_field_tag(:ph, params[:ph]) %>
         </div>
       </div>
       <div id="temperature_container" class="input_container">
         <%= label_tag(:temperature, "Temperatura:") %>
         <div>
-          <%= text_field_tag(:temperature) %>
+          <%= text_field_tag(:temperature, params[:temperature]) %>
           <span>ºC</span>
         </div>
       </div>
       <div id="water_flow_container" class="input_container">
         <%= label_tag(:water_flow, "Fluxo da água:") %>
         <div>
-          <%= text_field_tag(:water_flow) %>
+          <%= text_field_tag(:water_flow, params[:water_flow]) %>
           <span>L/H</span>
         </div>
       </div>
       <div id="previous_width_container" class="input_container">
         <%= label_tag(:previous_width, "Largura da última amostra:") %>
         <div>
-          <%= text_field_tag(:previous_width) %>
+          <%= text_field_tag(:previous_width, params[:previous_width]) %>
           <span>cm</span>
         </div>
       </div>
       <div id="previous_length_container" class="input_container">
         <%= label_tag(:previous_length, "Comprimento da última amostra:") %>
         <div>
-          <%= text_field_tag(:previous_length) %>
+          <%= text_field_tag(:previous_length, params[:previous_length]) %>
           <span>cm</span>
         </div>
       </div>
